@@ -1,10 +1,29 @@
 services:
+  redis-server:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - spring-postgres
   backend:
     build: backend
     ports:
       - 8080:8080
     environment:
       - POSTGRES_DB=example
+    links:
+      - redis-server
+    networks:
+      - spring-postgres
+  subscriber:
+    build: subscriber
+    ports:
+      - 8081:8081
+    environment:
+      - POSTGRES_DB=example
+    links:
+      - redis-server
     networks:
       - spring-postgres
   db:

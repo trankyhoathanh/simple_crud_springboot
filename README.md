@@ -22,3 +22,16 @@ from spring.datasource.url=jdbc:postgresql://db:5432/example
 to spring.datasource.url=jdbc:postgresql://localhost:5434/example
 2. Start postgres docker (port 5434)
 3. Go to file Application.java => Run debug, add debug point break.
+
+
+======
+redis notes : 
+1. curl --location --request POST 'http://localhost:8080/api/redis/publish' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "author":"thanh",
+    "data":"112"
+}'
+
+2. Tracking notes at docker subcribers node
+Message received : Message{data='112', author='thanh'}
